@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../../context/index";
-import dinein from "../../dates/imgs/dinein.png";
-import walkin from "../../dates/imgs/walkin.png";
+
 
 const Navbar = () => {
   let { state, dispatch } = useContext(Context);
