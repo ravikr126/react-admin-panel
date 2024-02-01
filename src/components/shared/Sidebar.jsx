@@ -1,5 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
+import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { HiOutlineLogout } from 'react-icons/hi'
 import { DASHBOARD_SIDEBAR_LINKS, DASHBOARD_SIDEBAR_BOTTOM_LINKS } from '../../lib/constants'
@@ -34,15 +35,48 @@ export default function Sidebar() {
 }
 
 function SidebarLink({ link }) {
-    const { pathname } = useLocation()
+	const { pathname } = useLocation();
+	const [isSubcategoryOpen, setIsSubcategoryOpen] = useState(false);
+  
+	const handleSubcategoryToggle = () => {
+	  setIsSubcategoryOpen(!isSubcategoryOpen);
+	};
 
     return (
-        <Link
-            to={link.path}
-            className={classNames(pathname === link.path ? 'bg-neutral-700 text-white' : 'text-neutral-400', linkClass)}
-        >
-            <span className="text-xl">{link.icon}</span>
-            {link.label}
-        </Link>
+		<>
+		<div
+        onClick={link.subcategories ? handleSubcategoryToggle : undefined}
+        className={classNames(
+          'cursor-pointer',
+          linkClass,
+          pathname === link.path ? 'bg-neutral-700 text-white' : 'text-neutral-400'
+        )}
+      >
+        <span className="text-xl">{link.icon}</span>
+        {link.label}
+        {link.subcategories && (
+          <span className="ml-auto">{isSubcategoryOpen ? '▲' : '▼'}</span>
+        )}
+      </div>
+
+      {/* Render subcategories if they exist and the dropdown is open */}
+      {link.subcategories && isSubcategoryOpen && (
+        <div className="pl-6">
+          {link.subcategories.map((subcategory) => (
+            <Link
+              key={subcategory.key}
+              to={subcategory.path}
+              className={classNames(
+                pathname === subcategory.path ? 'bg-neutral-700 text-white' : 'text-neutral-400',
+                linkClass
+              )}
+            >
+              <span className="text-xl">{subcategory.icon}</span>
+              {subcategory.label}
+            </Link>
+          ))}
+        </div>
+      )}
+    </>
     )
 }

@@ -45,7 +45,26 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		label: 'Messages',
 		path: '/messages',
 		icon: <HiOutlineAnnotation />
-	}
+	},
+	// Subcategories
+	{
+		key: 'categories',
+		label: 'Categories',
+		icon: <HiOutlineCog />,
+		subcategories: [
+		  {
+			key: 'subcategory1',
+			label: 'Subcategory 1',
+			path: '/categories/subcategory1',
+		  },
+		  {
+			key: 'subcategory2',
+			label: 'Subcategory 2',
+			path: '/categories/subcategory2',
+		  },
+		  // Add more subcategories as needed
+		],
+	  },
 ]
 
 export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
