@@ -1,20 +1,21 @@
-import { Route, Routes, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import AdminDashboard from "./pages/admin-dashboard/adminDashboard";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Layout from './components/shared/Layout'
+import Register from './pages/Register'
+import Dashboard from './pages/Dashboard'
+import Products from './pages/Products'
 
 function App() {
-    const navigate = useNavigate()
-    useEffect(() => {
-        navigate('/admin-dashboard/main')
-    }, [])
     return (
-        <div className=" h-[100vh] w-full">
+        <Router>
             <Routes>
-                <Route path="/admin-dashboard/:category" element={<AdminDashboard />} />
+                <Route path="/" element={<Layout />}>
+                    <Route index element={<Dashboard />} />
+                    <Route path="products" element={<Products />} />
+                </Route>
+                <Route path="/register" element={<Register />} />
             </Routes>
-        </div>
-    );
+        </Router>
+    )
 }
 
-export default App;
-
+export default App
