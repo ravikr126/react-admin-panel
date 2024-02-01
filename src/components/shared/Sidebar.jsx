@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react'
 import classNames from 'classnames'
 import { Link, useLocation } from 'react-router-dom'
 import { FcBullish } from 'react-icons/fc'
@@ -36,15 +37,49 @@ export default function Sidebar() {
 }
 
 function SidebarLink({ link }) {
-	const { pathname } = useLocation()
-
+	const { pathname } = useLocation();
+	const [isSubcategoryOpen, setIsSubcategoryOpen] = useState(false);
+  
+	const handleSubcategoryToggle = () => {
+	  setIsSubcategoryOpen(!isSubcategoryOpen);
+	};
+  
 	return (
+	  <>
 		<Link
-			to={link.path}
-			className={classNames(pathname === link.path ? 'bg-neutral-700 text-white' : 'text-neutral-400', linkClass)}
+		  to={link.path}
+		  onClick={link.subcategories ? handleSubcategoryToggle : undefined}
+		  className={classNames(
+			'cursor-pointer',
+			linkClass,
+			pathname === link.path ? 'bg-neutral-700 text-white' : 'text-neutral-400'
+		  )}
 		>
-			<span className="text-xl">{link.icon}</span>
-			{link.label}
+		  <span className="text-xl">{link.icon}</span>
+		  {link.label}
+		  {link.subcategories && (
+			<span className="ml-auto">{isSubcategoryOpen ? '▲' : '▼'}</span>
+		  )}
 		</Link>
-	)
-}
+  
+		{/* Render subcategories if they exist and the dropdown is open */}
+		{link.subcategories && isSubcategoryOpen && (
+		  <div className="pl-6">
+			{link.subcategories.map((subcategory) => (
+			  <Link
+				key={subcategory.key}
+				to={subcategory.path}
+				className={classNames(
+				  pathname === subcategory.path ? 'bg-neutral-700 text-white' : 'text-neutral-400',
+				  linkClass
+				)}
+			  >
+				<span className="text-xl">{subcategory.icon}</span>
+				{subcategory.label}
+			  </Link>
+			))}
+		  </div>
+		)}
+	  </>
+	);
+  }
