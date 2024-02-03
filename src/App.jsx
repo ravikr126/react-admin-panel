@@ -3,14 +3,16 @@ import Layout from './components/shared/Layout'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 import Products from './pages/Products'
+import Login from './components/Login'
 
 function App() {
     return (
         <Router>
             <Routes>
+            <Route path="/login" element={<Login />} />
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Dashboard />} />
-                    <Route path="products" element={<Products />} />    
+                    <Route path="products" element={<Products />} />
                 </Route>
                 <Route path="/register" element={<Register />} />
             </Routes>
