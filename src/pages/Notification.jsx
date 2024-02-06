@@ -16,15 +16,11 @@ const Notification = () => {
             formData.append('name', noti.name)
             formData.append('message', noti.message)
 
-            const response = await axios.post(
-                'https://api.postman.com/collections/24855398-294faea7-81f3-4e44-b7e7-b5f3e6282734?access_key=PMAT-01HFXRVSMHW05EBEF97J7KTJ5C',
-                formData,
-                {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
+            const response = await axios.post('', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
                 }
-            )
+            })
 
             console.log('Response:', response.data)
         } catch (error) {
