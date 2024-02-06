@@ -1,11 +1,7 @@
 import React from 'react'
-import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import { Switch } from 'antd'
-import { MdDelete } from 'react-icons/md'
-import { FaRegEdit } from 'react-icons/fa'
 
 export default function RecentOrders() {
     const [data, setData] = useState([])
@@ -17,7 +13,7 @@ export default function RecentOrders() {
             setLoading(true)
 
             // Make an API request to update the status
-            const response = await axios.post(`Api here`, {
+            const response = await axios.post(`http://13.233.139.58/notifications/admin/post`, {
                 status: isChecked
             })
 

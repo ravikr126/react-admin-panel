@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
-
 const Notification = () => {
     const [noti, setnoti] = useState({
-        name: '',
-        message: '' // Updated to use a dropdown
+        title: '',
+        message: '' 
     })
 
     const handleFormSubmit = async (e) => {
@@ -13,7 +12,7 @@ const Notification = () => {
 
         try {
             const formData = new FormData()
-            formData.append('name', noti.name)
+            formData.append('title', noti.title)
             formData.append('message', noti.message)
 
             const response = await axios.post('', formData, {
@@ -30,7 +29,7 @@ const Notification = () => {
 
     const handleInputChange = (e) => {
         const { name, value, type } = e.target
-        // If the input is a file or dropdown, update state differently
+        
         setnoti((prevData) => ({
             ...prevData,
             [name]: type === 'file' ? e.target.files[0] : value
@@ -61,14 +60,14 @@ const Notification = () => {
                         <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                             <div>
                                 <label className="text-black dark:text-gray-200" htmlFor="name">
-                                    Name
+                                    title
                                 </label>
                                 <input
-                                    id="name"
+                                    id="title"
                                     type="text"
-                                    name="name"
-                                    placeholder="name"
-                                    value={noti.name}
+                                    name="title"
+                                    placeholder="title"
+                                    value={noti.title}
                                     onChange={handleInputChange}
                                     className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:gray-600 focus:blue-500 dark:focus:blue-500 focus:outline-none focus:ring"
                                 />
