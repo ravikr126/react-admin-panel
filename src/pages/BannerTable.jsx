@@ -17,7 +17,7 @@ export default function RecentOrders() {
             setLoading(true)
 
             // Make an API request to update the status
-            const response = await axios.post(`http://penguinfe.golu.in:7000/banners/status/${id}`, {
+            const response = await axios.post(`Api here`, {
                 status: isChecked
             })
 
@@ -74,7 +74,7 @@ export default function RecentOrders() {
 
     return (
         <>
-            <div className="max-w-7xl mt-10 mb-10 p-8 mx-auto bg-white rounded-md shadow-md border border-gray-200 flex flex-row justify-between">
+            <div className="max-w-7xl mb-5 p-8 mx-auto bg-white rounded-md shadow-md border border-gray-200 flex flex-row justify-between">
                 <h1 className="font-serif text-3xl font-bold">Banner Table</h1>
                 <h3 className="text-right pr-5">
                     <Link to="/dashboard" className="text-[#2ca5e9] hover:text-blue-800">
@@ -84,11 +84,14 @@ export default function RecentOrders() {
                 </h3>
             </div>
 
-            <Link to="/Banner" className="bg-green-200 hover:bg-green-500 border rounded p-3 m-10">
-                <span className="font-bold text-xl">+</span> Add New
-            </Link>
-
-            <div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
+            <div className="flex justify-end">
+                <Link to="/Banner" className="bg-green-200 hover:bg-green-500 hover:text-black border rounded p-3 mr-5">
+                    <span className="font-bold text-xl">+</span> Add New
+                </Link>
+            </div>
+            <div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1 mt-5">
+                {' '}
+                {/* Add margin-top here */}
                 <strong className="text-gray-700 font-medium">Recent Orders</strong>
                 <div className="border-x border-gray-200 rounded-sm mt-3">
                     <table className="w-full text-gray-700">

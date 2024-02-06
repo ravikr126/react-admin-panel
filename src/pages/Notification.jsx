@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { message } from 'antd'
+
 
 const Notification = () => {
     const [noti, setnoti] = useState({
